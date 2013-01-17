@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>action</key>
+	<false/>
+	<key>category</key>
+	<string>SCRIPTS</string>
+	<key>command</key>
+    <string># Show London Tube Status
+# http://github.com/rjp/tubes_alfred
+
+STATUS=$( curl -s "http://api.tubeupdates.com/?method=get.status&amp;lines=all&amp;format=xml" | /usr/local/bin/xml-find -name 'line' -exec /usr/local/bin/xml-printf '%s: %s\n' '{-}' ://name ://status \; | grep -v 'good service' )
+
+RESULT=${STATUS:-All good}
+
+echo -n -e "$RESULT"</string>
+	<key>disabled</key>
+	<false/>
+	<key>escapedollar</key>
+	<true/>
+	<key>escapequery</key>
+	<true/>
+	<key>escapequerybackquotes</key>
+	<true/>
+	<key>escapequerybrackets</key>
+	<true/>
+	<key>escapequeryquotes</key>
+	<true/>
+	<key>escapequerysemicolons</key>
+	<true/>
+	<key>growloutput</key>
+	<true/>
+	<key>growloutputsticky</key>
+	<false/>
+	<key>keyword</key>
+	<string>ltl</string>
+	<key>logging</key>
+	<false/>
+	<key>multifileargs</key>
+	<false/>
+	<key>parameter</key>
+	<integer>0</integer>
+	<key>silent</key>
+	<true/>
+	<key>subtitle</key>
+	<string>Status of London Tube Lines</string>
+	<key>title</key>
+	<string>London Tubes</string>
+</dict>
+</plist>
