@@ -9,6 +9,7 @@
 	<key>command</key>
     <string># Show London Tube Status
 # http://github.com/rjp/tubes_alfred
+# Requires: xml-coreutils (assumes in /usr/local/bin)
 
 STATUS=$( curl -s "http://api.tubeupdates.com/?method=get.status&amp;lines=all&amp;format=xml" | /usr/local/bin/xml-find -name 'line' -exec /usr/local/bin/xml-printf '%s: %s\n' '{-}' ://name ://status \; | grep -v 'good service' )
 
